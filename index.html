@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Офлайн-обменник наличных на криптовалюту в Москве</title>
+    <meta name="author" content="CryptoExchange" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="Криптовалюта, обменник криптовалюты в Москве, CryptoExchange, crypto-ex, cryptoex"
+    />
+    <meta
+      name="description"
+      content="Офлайн-обменник наличных на криптовалюту в Москве"
+    />
+
+    <!-- Styles connect links -->
+    <link rel="stylesheet" href="./resources/css/styles.css" />
+    <link rel="stylesheet" href="./resources/css/normalizes.css" />
+    <link rel="stylesheet" href="./resources/css/hystmodal.min.css" />
+
+    <!-- Fonts connect links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/resources/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/resources/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/resources/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script src="/scripts/script.js" defer></script>
+  </head>
+  <body>
+    <header class="header page__header">
+      <div class="container">
+        <a href="index.html">
+          <img
+            src="resources/images/default-monochrome-white.svg"
+            alt="logo"
+            class="logo"
+          />
+        </a>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#calculator">Калькулятор</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#course">Курс</a>
+          </li>
+          <!-- <div class="lang-nav">
+            <li class="nav-item">
+              <a class="nav-link lang" href="index.html">RU</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link lang" href="indexeng.html">ENG</a>
+            </li>
+          </div> -->
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="content page__content">
+      <!-- Section -->
+      <section class="info" id="info">
+        <div class="container">
+          <div class="info-title">
+            <p>Офлайн-обменник наличных</p>
+            <p>на криптовалюту в Москве</p>
+          </div>
+          <div class="btn-request">
+            <a type="button" onclick="openModal()">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Оставить заявку на обмен
+            </a>
+            <form
+              method="POST"
+              class="form"
+              id="myForm"
+              onsubmit="sendEmailTelegram(event)"
+            >
+              <!-- Модальное окно -->
+              <div id="myModal" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <h4>Оставьте заявку на обмен</h4>
+
+                  <!-- Форма для ввода данных -->
+                  <div class="form-groupm">
+                    <label for="inputName">Имя*:</label>
+                    <input
+                      type="text"
+                      id="inputName name"
+                      class="name _req"
+                      name="name"
+                      placeholder="Введите имя"
+                      required
+                    />
+                  </div>
+                  <div class="form-groupm">
+                    <label for="inputPhoneNumber">Номер телефона*:</label>
+                    <input
+                      type="tel"
+                      class="phone _req"
+                      name="phone"
+                      placeholder="+7 (***) ***-**-**"
+                      id="inputPhoneNumber phone"
+                      required
+                    />
+                  </div>
+                  <div class="form-groupm">
+                    <label for="inputEmail">Почта (необязательно):</label>
+                    <input
+                      type="email"
+                      class="mail _email"
+                      name="email"
+                      id="inputEmail mail"
+                      placeholder="Введите почту"
+                    />
+                  </div>
+                  <div class="dannie">
+                    <label>Отправляя информацию, вы соглашаетесь </label><br />
+                    <label>с обработкой персональных данных.</label>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      onclick="closeModal()"
+                    >
+                      Закрыть
+                    </button>
+                    <button
+                      type="submit"
+                      class="btn form-button"
+                      onclick="submitForm()"
+                    >
+                      Отправить
+                    </button>
+                  </div>
+                  <div
+                    class="form__send-result"
+                    style="font-size: 14px; padding-top: 10px"
+                  ></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="calculator" id="calculator">
+        <!-- <img class="usdtsvg" src="/resources/images/tether.svg" alt="lite" /> -->
+        <h1 class="sectioncalc">Калькулятор криптовалюты</h1>
+        <!-- <img class="btcsvg" src="/resources/images/bitcoin.svg" alt="btc" />
+        <img class="ethsvg" src="/resources/images/ethereum.svg" alt="eth" />
+        <img class="litesvg" src="/resources/images/litecoin.svg" alt="lite" /> -->
+        <div class="container">
+          <div class="prod mt-5">
+            <h1 class="mb-4">Мы продаём</h1>
+            <div class="form-group">
+              <label for="amount">Отдаёте:</label>
+              <input type="text" class="form-control" id="amount" />
+            </div>
+            <div class="form-group">
+              <label for="crypto">Выберите криптовалюту:</label>
+              <select class="form-control" id="crypto">
+                <option value="BTC">Bitcoin</option>
+                <option value="ETH">Ethereum</option>
+                <option value="LTC">Litecoin</option>
+                <option value="USDT">Tether (USDT)</option>
+              </select>
+            </div>
+            <button
+              type="button"
+              class="btn-primary"
+              onclick="calculateExchange('result', 'resultConverted')"
+            >
+              Рассчитать
+            </button>
+            <div class="mt-3">
+              <div
+                class="alert alert-success"
+                id="result"
+                style="display: none"
+              ></div>
+              <div
+                class="alert alinp alert-success"
+                id="resultConverted"
+                style="display: none"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Калькулятор обратного значения -->
+          <div class="pokyp mt-5">
+            <h1 class="mb-4">Мы покупаем</h1>
+            <div class="form-group">
+              <label for="amount2">Отдаёте ($):</label>
+              <input type="text" class="form-control" id="amount2" />
+            </div>
+            <div class="form-group">
+              <label for="crypto2">Выберите криптовалюту:</label>
+              <select class="form-control" id="crypto2">
+                <option value="BTC">Bitcoin</option>
+                <option value="ETH">Ethereum</option>
+                <option value="LTC">Litecoin</option>
+                <option value="USDT">Tether (USDT)</option>
+              </select>
+            </div>
+            <button
+              type="button"
+              class="btn-primary"
+              onclick="calculateReverse('result2', 'resultConverted2')"
+            >
+              Рассчитать
+            </button>
+            <div class="mt-3">
+              <div
+                class="alert alert-success"
+                id="result2"
+                style="display: none"
+              ></div>
+              <div
+                class="alert alinp alert-success"
+                id="resultConverted2"
+                style="display: none"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="course" id="course">
+        <div class="container mt-5">
+          <h2 class="courmb-4">
+            Топ-10 криптовалют по рыночной капитализации:
+          </h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Символ</th>
+                <th scope="col">Цена (USD)</th>
+                <th scope="col">Изменение за 24 ч (%)</th>
+              </tr>
+            </thead>
+            <tbody class="tbodycr" id="crypto-data"></tbody>
+          </table>
+          <div class="courses">
+            <div class="btc-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl + "serve/v2/coin/chart?fsym=BTC&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+            <div class="eth-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl + "serve/v2/coin/chart?fsym=ETH&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+            <div class="xrp-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl + "serve/v2/coin/chart?fsym=XRP&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+          </div>
+          <div class="courses2">
+            <div class="bnb-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl + "serve/v2/coin/chart?fsym=BNB&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+            <div class="steth-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl +
+                    "serve/v2/coin/chart?fsym=STETH&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+            <div class="sol-usd">
+              <script type="text/javascript">
+                baseUrl = "https://widgets.cryptocompare.com/";
+                var scripts = document.getElementsByTagName("script");
+                var embedder = scripts[scripts.length - 1];
+                var cccTheme = {
+                  General: {
+                    background: "#021a45",
+                    borderWidth: "2px",
+                    borderColor: "#04d435",
+                    borderRadius: "5px 5px 5px 5px",
+                  },
+                  Header: { background: "#021a45", color: "#04d435" },
+                  Followers: {
+                    background: "#04d435",
+                    color: "#FFF",
+                    borderColor: "#04d435",
+                    counterBorderColor: "#04d435",
+                    counterColor: "#04d435",
+                  },
+                  Data: {
+                    priceColor: "#FFF",
+                    infoLabelColor: "#CCC",
+                    infoValueColor: "#CCC",
+                  },
+                  Chart: {
+                    fillColor: "rgba(86,202,158,0.5)",
+                    borderColor: "#56ca9e",
+                  },
+                  Conversion: { background: "#000", color: "#999" },
+                };
+                (function () {
+                  var appName = encodeURIComponent(window.location.hostname);
+                  if (appName == "") {
+                    appName = "local";
+                  }
+                  var s = document.createElement("script");
+                  s.type = "text/javascript";
+                  s.async = true;
+                  var theUrl =
+                    baseUrl + "serve/v2/coin/chart?fsym=SOL&tsym=USD&period=1W";
+                  s.src =
+                    theUrl +
+                    (theUrl.indexOf("?") >= 0 ? "&" : "?") +
+                    "app=" +
+                    appName;
+                  embedder.parentNode.appendChild(s);
+                })();
+              </script>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer page__footer">
+      <div class="container">
+        <div class="col-md-6">
+          <p>
+            Сайт носит исключительно информационный характер и ни при каких
+            условиях не является публичной офертой, определяемой положениями
+            пункта 2 статьи 437 Гражданского кодекса Российской Федерации.
+          </p>
+          <p>
+            <a
+              target="_blank"
+              href="/documents/Пользовательское соглашение.docx"
+              >Пользовательское соглашение</a
+            >
+          </p>
+          <p>
+            <a
+              target="_blank"
+              href="/documents/Политика конфиденциальности.docx"
+              >Политика в отношении обработки персональных данных клиентов</a
+            >
+          </p>
+          <p>© CryptoExchange, 2023</p>
+        </div>
+        <div class="col-md-7 text-right">
+          <div class="footer-logo">
+            <img
+              src="/resources/images/default-monochrome-white.svg"
+              alt="logo"
+            />
+          </div>
+          <p class="contacts">Контакты:</p>
+          <p>Телефон: <a href="tel:+79123421156">+7 911 111 11 11</a></p>
+          <p>
+            E-mail: <a href="mailto:crypto.ex@mail.ru">crypto.ex@mail.ru</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer__button src-list">
+        <a href="#info" class="src-link">
+          <img src="/resources/images/arrow.svg" alt="Go top" />
+        </a>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>
